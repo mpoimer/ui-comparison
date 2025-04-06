@@ -1,0 +1,70 @@
+## Xcode
+.DS_Store
+.build/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+*.xccheckout
+*.moved-aside
+DerivedData/
+.idea/
+*.xcworkspace/
+
+## Swift Package Manager
+/.swiftpm/
+/Package.resolved
+
+## CocoaPods
+Pods/
+Podfile.lock
+
+## Carthage
+Carthage/Build/
+
+## Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/
+fastlane/test_output/
+
+## Archives
+*.xcarchive
+
+## xcresult
+*.xcresult
+
+## Playgrounds
+playground.xcworkspace
+
+## SwiftLint and SwiftFormat
+.swiftlint.yml
+.swiftformat
+
+## Xcode Server
+*.xccrashpoint
+*.xcodeproj/**/xcdebugger/
+*.xcodeproj/**/xcshareddata/xcschemes/xcschememanagement.plist
+
+## Temporary Files
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+
+## macOS Files
+*.DS_Store
+.AppleDouble
+.LSOverride
+
+## Logs
+*.log
+
+## Others
+*.orig
+config.yaml
