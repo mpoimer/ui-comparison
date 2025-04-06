@@ -1,0 +1,8 @@
+{
+    "id": "1",
+    "name": "Jane Doe",
+    "email": "jane.doe@example.com",
+    "gender": "female",
+    "birthday": "1998-12-31",
+    "emailUpdates": true
+}
