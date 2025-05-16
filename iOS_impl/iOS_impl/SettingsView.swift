@@ -1,10 +1,10 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @State var name: String = ""
-    @State var email: String = ""
-    @State var gender: Gender = .other
-    @State var birthdate: Date = .now
+    @State var name: String = "Jane Doe"
+    @State var email: String = "jane.doe@example.com"
+    @State var gender: Gender = .female
+    @State var birthdate: Date = Date(timeIntervalSince1970: 891974302)
     @State var emailUpdates = true
     @State var showsDeleteAlert = false
 
@@ -45,10 +45,6 @@ struct SettingsView: View {
         }
         .navigationTitle("Settings")
         .toolbar {
-            ToolbarItem(placement: .topBarLeading) {
-                Button("Refresh", systemImage: "arrow.clockwise") {
-                }
-            }
             ToolbarItem(placement: .topBarTrailing) {
                 Button("Save") {
                 }

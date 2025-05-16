@@ -17,8 +17,8 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import at.poimer.androidimpl.views.SettingsScreen
 import at.poimer.androidimpl.views.HomeScreen
+import at.poimer.androidimpl.views.SettingsScreen
 
 @Composable
 fun BottomNavigationBar() {
@@ -29,37 +29,29 @@ fun BottomNavigationBar() {
     val navController = rememberNavController()
 
     Scaffold(
-        modifier = Modifier.fillMaxSize(),
-        bottomBar = {
+        modifier = Modifier.fillMaxSize(), bottomBar = {
             NavigationBar {
                 BottomNavigationItem().bottomNavigationItems()
                     .forEachIndexed { index, navigationItem ->
-                        NavigationBarItem(
-                            selected = index == navigationSelectedItem,
-                            label = {
-                                Text(navigationItem.label)
-                            },
-                            icon = {
-                                Icon(
-                                    navigationItem.icon,
-                                    contentDescription = navigationItem.label
-                                )
-                            },
-                            onClick = {
-                                navigationSelectedItem = index
-                                navController.navigate(navigationItem.route) {
-                                    popUpTo(navController.graph.findStartDestination().id) {
-                                        saveState = true
-                                    }
-                                    launchSingleTop = true
-                                    restoreState = true
+                        NavigationBarItem(selected = index == navigationSelectedItem, label = {
+                            Text(navigationItem.label)
+                        }, icon = {
+                            Icon(
+                                navigationItem.icon, contentDescription = navigationItem.label
+                            )
+                        }, onClick = {
+                            navigationSelectedItem = index
+                            navController.navigate(navigationItem.route) {
+                                popUpTo(navController.graph.findStartDestination().id) {
+                                    saveState = true
                                 }
+                                launchSingleTop = true
+                                restoreState = true
                             }
-                        )
+                        })
                     }
             }
-        }
-    ) { paddingValues ->
+        }) { paddingValues ->
         NavHost(
             navController = navController,
             startDestination = Screens.Settings.route,

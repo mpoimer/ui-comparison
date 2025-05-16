@@ -126,11 +126,11 @@ class CupertinoScaffoldWithNavigationBar extends StatelessWidget {
         onTap: onDestinationSelected,
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(CupertinoIcons.home),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
+            icon: Icon(CupertinoIcons.settings),
             label: 'Settings',
           ),
         ],

@@ -19,7 +19,7 @@ class EditProfileScreen extends StatefulWidget {
 }
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
-  String _gender = 'other';
+  String _gender = 'female';
   bool _emailUpdates = true;
   DateTime _birthday = DateTime.now();
   final TextEditingController _nameController = TextEditingController();
@@ -29,126 +29,119 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   Widget _buildiOS(BuildContext context) {
     return CupertinoPageScaffold(
       backgroundColor: CupertinoColors.systemGroupedBackground,
-      navigationBar: CupertinoNavigationBar(
-        middle: const Text('Settings'),
-        leading: CupertinoButton(
-          sizeStyle: CupertinoButtonSize.medium,
-          onPressed: _togglePlatform,
-          child: const Icon(CupertinoIcons.refresh),
-        ),
-        trailing: CupertinoButton(
-          sizeStyle: CupertinoButtonSize.medium,
-          onPressed: () {},
-          child: const Text('Save'),
-        ),
-      ),
-      child: SafeArea(
-        child: CustomScrollView(
-          slivers: [
-            SliverList(
-              delegate: SliverChildListDelegate(
-                [
-                  CupertinoFormSection.insetGrouped(
-                    header: Text(
-                      'Personal Information'.toUpperCase(),
-                    ),
-                    children: [
-                      CupertinoTextFormFieldRow(
-                        prefix: const Text('Name'),
-                        placeholder: 'Name',
-                        controller: _nameController,
-                      ),
-                      CupertinoTextFormFieldRow(
-                        prefix: const Text('Email'),
-                        placeholder: 'Email',
-                        keyboardType: TextInputType.emailAddress,
-                        controller: _emailController,
-                      ),
-                      CupertinoFormRow(
-                        prefix: const Text('Gender: '),
-                        child: CupertinoSlidingSegmentedControl(
-                          groupValue: _gender,
-                          children: {
-                            'male': Text('Male'),
-                            'female': Text('Female'),
-                            'other': Text('Other'),
-                          },
-                          onValueChanged: (value) {
-                            setState(() {
-                              _gender = value!;
-                            });
-                          },
-                        ),
-                      ),
-                      CupertinoFormRow(
-                        prefix: const Text('Birthday'),
-                        child: CupertinoButton(
-                          child: Text(
-                            _birthday.toFormattedDate(),
-                          ),
-                          onPressed: () async {
-                            await showCupertinoModalPopup(
-                              context: context,
-                              builder: (context) => Container(
-                                color: CupertinoColors.systemBackground.resolveFrom(context),
-                                height: 200,
-                                child: SafeArea(
-                                  top: false,
-                                  child: CupertinoDatePicker(
-                                    mode: CupertinoDatePickerMode.date,
-                                    onDateTimeChanged: (value) {
-                                      setState(() {
-                                        _birthday = value;
-                                      });
-                                    },
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                    ],
+      child: CustomScrollView(
+        slivers: [
+          CupertinoSliverNavigationBar(
+            largeTitle: Text('Settings'),
+            trailing: CupertinoButton(
+              sizeStyle: CupertinoButtonSize.medium,
+              onPressed: () {},
+              child: const Text('Save'),
+            ),
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [
+                CupertinoFormSection.insetGrouped(
+                  header: Text(
+                    'Personal Information'.toUpperCase(),
                   ),
-                  CupertinoFormSection.insetGrouped(
-                    header: Text(
-                      'Contact'.toUpperCase(),
+                  children: [
+                    CupertinoTextFormFieldRow(
+                      prefix: const Text('Name'),
+                      placeholder: 'Name',
+                      controller: _nameController,
                     ),
-                    children: [
-                      CupertinoFormRow(
-                        prefix: const Text('Email Updates'),
-                        child: CupertinoSwitch(
-                          value: _emailUpdates,
-                          onChanged: (value) {
-                            setState(() {
-                              _emailUpdates = value;
-                            });
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 16),
-                  CupertinoFormSection.insetGrouped(
-                    children: [
-                      CupertinoListTile(
-                        title: const Text(
-                          'Delete Account',
-                          style: TextStyle(
-                            color: CupertinoColors.destructiveRed,
-                          ),
-                        ),
-                        onTap: () {
-                          Dialogs.showDeleteAccountDialog(context);
+                    CupertinoTextFormFieldRow(
+                      prefix: const Text('Email'),
+                      placeholder: 'Email',
+                      keyboardType: TextInputType.emailAddress,
+                      controller: _emailController,
+                    ),
+                    CupertinoFormRow(
+                      prefix: const Text('Gender: '),
+                      child: CupertinoSlidingSegmentedControl(
+                        groupValue: _gender,
+                        children: {
+                          'male': Text('Male'),
+                          'female': Text('Female'),
+                          'other': Text('Other'),
+                        },
+                        onValueChanged: (value) {
+                          setState(() {
+                            _gender = value!;
+                          });
                         },
                       ),
-                    ],
+                    ),
+                    CupertinoFormRow(
+                      prefix: const Text('Birthday'),
+                      child: CupertinoButton(
+                        child: Text(
+                          _birthday.toFormattedDate(),
+                        ),
+                        onPressed: () async {
+                          await showCupertinoModalPopup(
+                            context: context,
+                            builder: (context) => Container(
+                              color: CupertinoColors.systemBackground.resolveFrom(context),
+                              height: 200,
+                              child: SafeArea(
+                                top: false,
+                                child: CupertinoDatePicker(
+                                  mode: CupertinoDatePickerMode.date,
+                                  onDateTimeChanged: (value) {
+                                    setState(() {
+                                      _birthday = value;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+                CupertinoFormSection.insetGrouped(
+                  header: Text(
+                    'Contact'.toUpperCase(),
                   ),
-                ],
-              ),
+                  children: [
+                    CupertinoFormRow(
+                      prefix: const Text('Email Updates'),
+                      child: CupertinoSwitch(
+                        value: _emailUpdates,
+                        onChanged: (value) {
+                          setState(() {
+                            _emailUpdates = value;
+                          });
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                CupertinoFormSection.insetGrouped(
+                  children: [
+                    CupertinoListTile(
+                      title: const Text(
+                        'Delete Account',
+                        style: TextStyle(
+                          color: CupertinoColors.destructiveRed,
+                        ),
+                      ),
+                      onTap: () {
+                        Dialogs.showDeleteAccountDialog(context);
+                      },
+                    ),
+                  ],
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -157,12 +150,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Settings'),
-        actions: [
-          IconButton(
-            onPressed: _togglePlatform,
-            icon: const Icon(Icons.refresh),
-          ),
-        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 16),

@@ -52,18 +52,19 @@ import at.poimer.androidimpl.models.Gender
 import at.poimer.androidimpl.ui.theme.AndroidImplTheme
 import java.sql.Date
 import java.time.LocalDateTime
+import java.time.Month
 import java.time.ZoneOffset
 import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
 fun SettingsScreen(modifier: Modifier = Modifier) {
-    var firstName by remember { mutableStateOf("") }
-    var lastName by remember { mutableStateOf("") }
+    var firstName by remember { mutableStateOf("Jane Doe") }
+    var lastName by remember { mutableStateOf("jane.doe@example.com") }
     var emailUpdates by remember { mutableStateOf(false) }
     var birthDate by remember {
         mutableLongStateOf(
-            LocalDateTime.now().toInstant(ZoneOffset.UTC).toEpochMilli()
+            LocalDateTime.ofEpochSecond(891974302L,0, ZoneOffset.UTC).toInstant(ZoneOffset.UTC).toEpochMilli()
         )
 
     }
@@ -118,6 +119,9 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
                     value = datePickerValue,
                     onValueChange = {},
                     readOnly = true,
+                    supportingText = {
+                        Text("DD.MM.YYYY")
+                    },
                     trailingIcon = {
                         IconButton(onClick = { showDatePicker = true }) {
                             Icon(
@@ -203,7 +207,7 @@ fun SettingsScreen(modifier: Modifier = Modifier) {
 @Composable
 fun GenderSelection() {
     var expanded by remember { mutableStateOf(false) }
-    var selected by remember { mutableStateOf(Gender.OTHER) }
+    var selected by remember { mutableStateOf(Gender.FEMALE) }
 
     ExposedDropdownMenuBox(
         modifier = Modifier.fillMaxWidth(),
